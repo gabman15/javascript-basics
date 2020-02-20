@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+        function init() {
+            hotdogs = prompt("How many hotdogs?","1");
+            fries = prompt("How many fries?","1");
+            sodas = prompt("How many sodas?","1");
+            document.getElementById("numhotdog").innerHTML = hotdogs;
+            pricehotdogs = (roundMoney(parseFloat(hotdogs) * 3.25));
+            document.getElementById("pricehotdog").innerHTML = pricehotdogs;
+            document.getElementById("numfries").innerHTML = fries;
+            pricefries = (roundMoney(parseFloat(fries) * 2.00));
+            document.getElementById("pricefries").innerHTML = pricefries;
+            document.getElementById("numsoda").innerHTML = sodas;
+            pricesodas = (roundMoney(parseFloat(sodas) * 1.50));
+            document.getElementById("pricesoda").innerHTML = pricesodas;
+            subtotal = (parseFloat(pricehotdogs) + parseFloat(pricefries) +
+                parseFloat(pricesodas));
+            if (subtotal >= 20.00) {
+                document.write("<p>You qualified for our 10% discount.</p>");
+                subtotal = subtotal * .90;
+            }
+            document.write("<p>Subtotal: $" + roundMoney(subtotal) + "</p>");
+            tax = subtotal * .0625;
+            document.write("<p>Meals Tax: $" + roundMoney(tax) + "</p>");
+            document.write("<p>Total: $" + roundMoney(subtotal + tax) + "</p>");
+        }
+        function roundMoney(x) {
+            return parseFloat(x).toFixed(2);
+        }
+    </script>
+</head>
+<header>
+    <h1>Welcome to Joe's Hotdogs!</h1>
+</header>
+
+<body>
+    <h2>Your Order:</h2>
+    <p># Hotdogs: <tag id = "numhotdog">0</tag> at $3.25 is
+    $<tag id = "pricehotdog">0</tag></p>
+
+    <p># Fries: <tag id = "numfries">0</tag> at $2.00 is
+    $<tag id = "pricefries">0</tag></p>
+
+    <p># Sodas: <tag id = "numsoda">0</tag> at $1.50 is
+    $<tag id = "pricesoda">0</tag></p>
+</body>
+<script type="text/javascript">
+    window.onload = init();
+</script>
+</html>
